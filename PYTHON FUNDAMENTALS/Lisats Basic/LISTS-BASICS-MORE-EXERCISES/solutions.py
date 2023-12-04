@@ -160,56 +160,46 @@ print(f'[{",".join(list(map(str, ordered_people)))}]')
 
 # Task 5
 
-# read the input
-first_line = input().split(' ')
-second_line = input().split(' ')
-third_line = input().split(' ')
+# read inputs (game state)
+line_one = input().split()
+line_two = input().split()
+line_three = input().split()
 
-# create matrix
-matrix = [first_line, second_line, third_line]
-
-# assign booleans for game results
+# assign bool variables keep record if one of the players wins
 first_wins = False
 second_wins = False
 
-# check horizontals
-for line in matrix:
-    if all(x == '1' for x in line):
+# create matrix for game state
+game = [line_one, line_two, line_three]
+
+# check if any of the players satisfy the conditions to win the game
+for c in range(3):
+    if first_wins or second_wins:
+        break
+    if game[c][0] == game[c][1] == game[c][2] == "1":
         first_wins = True
-    elif all(x == '2' for x in line):
+    if game[c][0] == game[c][1] == game[c][2] == "2":
         second_wins = True
-
-# check verticals
-for r in range(3):
-    column = []
-    for c in range(3):
-        column.append(matrix[r][c])
-
-    if all(x == '1' for x in column):
+    if game[0][c] == game[1][c] == game[2][c] == "1":
         first_wins = True
-    elif all(x == '2' for x in column):
+    if game[0][c] == game[1][c] == game[2][c] == "2":
         second_wins = True
-
-# read diagonals state
-left_diagonal = [matrix[0][0], matrix[1][1], matrix[2][2]]
-right_diagonal = [matrix[0][2], matrix[1][1], matrix[2][0]]
-
-
-# check diagonals
-if all(x == '1' for x in left_diagonal) \
-        or all(x == '1' for x in right_diagonal):
+if game[0][0] == game[1][1] == game[2][2] == "1":
     first_wins = True
-elif all(x == '2' for x in left_diagonal) \
-        or all(x == '2' for x in right_diagonal):
+if game[0][2] == game[1][1] == game[2][0] == "1":
+    first_wins = True
+if game[0][0] == game[1][1] == game[2][2] == "2":
+    second_wins = True
+if game[0][2] == game[1][1] == game[2][0] == "2":
     second_wins = True
 
-# print result
-if first_wins and second_wins or not first_wins and not second_wins:
-    print("Draw!")
-elif first_wins:
-    print('First player won')
+# print the result
+if first_wins:
+    print("First player won")
 elif second_wins:
-    print('Second player won')
+    print("Second player won")
+else:
+    print("Draw!")
 
 
 # Task 6
@@ -217,14 +207,18 @@ elif second_wins:
 # read inputs
 numbers = list(map(int, input().split(' ')))
 
+# read commands and process them until "end" command
 while True:
 
     input_line = input()
+
+    # break the cycle if end command is input
     if input_line == 'end':
         break
 
     token = input_line.split(' ')
 
+    # handle exchange command
     if token[0] == 'exchange':
         index = int(token[1])
 
@@ -233,26 +227,36 @@ while True:
         else:
             print("Invalid index")
 
+    # in any other case except "end" and "exchange" command, there will be even/odd command
+    # assign values to variable "odd_even_check" and use it in filter predicate
     else:
-        check = None
+        odd_even_check = None
         if 'odd' in token:
-            check = 1
+            odd_even_check = 1
         elif 'even' in token:
-            check = 0
-        filtered_numbers = [x for x in numbers if x % 2 == check]
+            odd_even_check = 0
 
+        # filter all odd/even elements
+        filtered_numbers = [x for x in numbers if x % 2 == odd_even_check]
+
+        # handle min/max command
         if token[0] in ['min', 'max']:
 
             if filtered_numbers:
-                max_num = eval(token[0])(filtered_numbers)
-                reversed_index = list(reversed(numbers)).index(max_num)
+
+                # the min/max input commands are same as min/max python functions - chan be patched directly into code
+                num = eval(token[0])(filtered_numbers)
+                # revere the list to find the last elements easier
+                reversed_index = list(reversed(numbers)).index(num)
                 index = len(numbers) - reversed_index - 1
 
+                # print result
                 print(index)
 
             else:
                 print('No matches')
 
+        # handel first/last commands
         elif token[0] in ['first', 'last']:
             count = int(token[1])
 
@@ -261,13 +265,17 @@ while True:
             else:
                 result = []
                 if token[0] == 'last':
+                    # reverse the list to find the last elements
                     filtered_numbers = list(reversed(filtered_numbers))
-                    result = list(reversed(filtered_numbers))[:count]
+                    # reverse the result again to order in the elements as the original sequence
+                    result = list(reversed(filtered_numbers[:count]))
                 elif token[0] == 'first':
                     result = filtered_numbers[:count]
 
+                # print the result
                 print(result)
 
+# print final state of the list
 print(numbers)
 
 
