@@ -1,82 +1,82 @@
-# # Task 1
-#
-# # read the inputs
-# population = list(map(int, input().split(', ')))
-# min_wealth = int(input())
-#
-# # start to redistribute the wealth form the richest to the poorest (Vive le communisme!)
-# while not all(x >= min_wealth for x in population):  # check if there are still poor people left
-#     min_index = population.index(min(population))
-#
-#     if max(population) <= min_wealth:  # check if there is enough wealth redistribute
-#         break
-#
-#     # check if there are still poor people and there are still rich enough people to takem wealth from
-#     while population[min_index] < min_wealth and max(population) > min_wealth:
-#
-#         max_index = population.index(max(population))
-#
-#         needed_amount = min_wealth - population[min_index]
-#
-#         if population[max_index] - needed_amount < min_wealth:
-#             amount_possible = population[max_index] - min_wealth
-#             population[min_index] += amount_possible
-#             population[max_index] = min_wealth
-#         else:
-#             population[max_index] -= needed_amount
-#             population[min_index] = min_wealth
-#
-# if min(population) >= min_wealth:  # we've acHived communism !
-#     print(population)
-# else:
-#     print('No equal distribution possible')  # stick to capitalism
+# Task 1
+
+# read the inputs
+population = list(map(int, input().split(', ')))
+min_wealth = int(input())
+
+# start to redistribute the wealth form the richest to the poorest (Vive le communisme!)
+while not all(x >= min_wealth for x in population):  # check if there are still poor people left
+    min_index = population.index(min(population))
+
+    if max(population) <= min_wealth:  # check if there is enough wealth redistribute
+        break
+
+    # check if there are still poor people and there are still rich enough people to takem wealth from
+    while population[min_index] < min_wealth and max(population) > min_wealth:
+
+        max_index = population.index(max(population))
+
+        needed_amount = min_wealth - population[min_index]
+
+        if population[max_index] - needed_amount < min_wealth:
+            amount_possible = population[max_index] - min_wealth
+            population[min_index] += amount_possible
+            population[max_index] = min_wealth
+        else:
+            population[max_index] -= needed_amount
+            population[min_index] = min_wealth
+
+if min(population) >= min_wealth:  # we've acHived communism !
+    print(population)
+else:
+    print('No equal distribution possible')  # stick to capitalism
 
 
-# # Task 2
-#
-# text = input()
-#
-# numbers = []
-# strings = []
-#
-# for el in text:
-#     if not el.isdigit():
-#         strings.append(el)
-#     elif el.isdigit():
-#         numbers.append(int(el))
-#
-# take = []
-# skip = []
-#
-# for i in range(len(numbers)):
-#     if i % 2 == 0:
-#         take.append(numbers[i])
-#     else:
-#         skip.append(numbers[i])
-#
-#
-# result = ''
-#
-# for i in range(len(numbers) // 2):
-#     for n in range(take.pop(0)):
-#         if strings:
-#             result += strings.pop(0)
-#
-#     for n in range(skip.pop(0)):
-#         if strings:
-#             strings.pop(0)
-#
-# print(result)
+# Task 2
 
-#
+text = input()
+
+numbers = []
+strings = []
+
+for el in text:
+    if not el.isdigit():
+        strings.append(el)
+    elif el.isdigit():
+        numbers.append(int(el))
+
+take = []
+skip = []
+
+for i in range(len(numbers)):
+    if i % 2 == 0:
+        take.append(numbers[i])
+    else:
+        skip.append(numbers[i])
+
+
+result = ''
+
+for i in range(len(numbers) // 2):
+    for n in range(take.pop(0)):
+        if strings:
+            result += strings.pop(0)
+
+    for n in range(skip.pop(0)):
+        if strings:
+            strings.pop(0)
+
+print(result)
+
+
 # # Task 3
 #
 # rows_count = int(input())
 #
+# max_path = 0
 # maze = []
 # moves = []
-# moves_count = 0
-# brunch_points = []
+# branch_points = []
 # k = []
 # branches = []
 # next_move_wins = False
@@ -86,25 +86,26 @@
 # for _ in range(rows_count):
 #     maze.append(list(input()))
 #
-# columns_count = len(maze[0])
 #
-#
-# def find_kate(matrix):
-#     kate = None
+# def find_kate():
+#     global maze
+#     global k
 #
 #     for r in range(rows_count):
-#         if kate:
+#         if k:
 #             break
-#         for c in range(columns_count):
-#             if matrix[r][c] == 'k':
-#                 kate = [r, c]
+#         for c in range(len(maze[0])):
+#             if maze[r][c] == 'k':
+#                 k = [r, c]
 #                 break
 #
-#     return kate
 #
-#
-# def check_if_possible_moves(maze, k):
+# def check_if_possible_moves():
+#     global maze
+#     global k
+#     global next_move_wins
 #     next_move_wins = False
+#     global possible_moves
 #
 #     all_moves = [
 #         [k[0], k[1] - 1],
@@ -114,25 +115,25 @@
 #     ]
 #
 #     inside_moves = [m for m in all_moves
-#                     if 0 <= m[0] < len(matrix) and
-#                     0 <= m[1] < len(matrix[0])]
+#                     if 0 <= m[0] < len(maze) and
+#                     0 <= m[1] < len(maze[0])]
 #
 #     if len(inside_moves) < 4:
 #         next_move_wins = True
 #
 #     possible_moves = [m for m in inside_moves if maze[m[0]][m[1]] == ' ']
 #
-#     return possible_moves, next_move_wins
 #
-#
-# def make_move(maze, k, possible_moves, moves_count, branch_points):
-#     branch_point = None
+# def make_move():
+#     global k
+#     global maze
+#     global possible_moves
+#     global branch_points
 #
 #     if len(possible_moves) == 1:
 #         maze[k[0]][k[1]] = '.'
 #         maze[possible_moves[0][0]][possible_moves[0][1]] = 'k'
 #         k = maze[possible_moves[0][0]][possible_moves[0][1]]
-#         moves_count += 1
 #         moves. append(k)
 #
 #     else:
@@ -141,54 +142,50 @@
 #         maze[k[0]][k[1]] = '.'
 #         maze[branch_move[0]][branch_move[1]] = 'k'
 #         k = maze[branch_move[0]][branch_move[1]]
-#         moves_count += 1
-#
-#     return maze, k, moves_count, branch_points
 #
 #
-# k = find_kate(matrix=maze)
-#
-# possible_moves, next_move_wins = check_if_possible_moves(maze, k)
-#
-# while True:
-#     if not possible_moves and next_move_wins:
-#         moves_count += 1
-#         break
-#     if not possible_moves and not next_move_wins:
-#         print('Kate cannot get out')
-#         break
-#
-#     move = make_move(maze, k, possible_moves, moves)
-#
-#     matrix, k, moves_count, branch_move = move
-#
-#     branches.append(branch_move)
-#
-#     possible_moves, next_move_wins = check_if_possible_moves(maze, k)
-#
-#     for r in maze:
-#         print(r)
+# find_kate()
+# check_if_possible_moves()
+# #
+# # while True:
+# #     if not possible_moves and next_move_wins:
+# #         moves_count += 1
+# #         break
+# #     if not possible_moves and not next_move_wins:
+# #         print('Kate cannot get out')
+# #         break
+# #
+# #     move = make_move(maze, k, possible_moves, moves)
+# #
+# #     matrix, k, moves_count, branch_move = move
+# #
+# #     branches.append(branch_move)
+# #
+# #     possible_moves, next_move_wins = check_if_possible_moves(maze, k)
+# #
+# #     for r in maze:
+# #         print(r)
 
 
-# # Task 4
-#
-# n = int(input())
-# matrix = []
-# destroyed_ships = 0
-#
-# for r in range(n):
-#     matrix.append(list(map(int, input().split(' '))))
-#
-# command_line = input().split(' ')
-# commands = [[int(c[0]), int(c[2])] for c in command_line]
-#
-# for c in commands:
-#     if matrix[c[0]][c[1]] > 0:
-#         matrix[c[0]][c[1]] -= 1
-#         if matrix[c[0]][c[1]] == 0:
-#             destroyed_ships += 1
-#
-# print(destroyed_ships)
+# Task 4
+
+n = int(input())
+matrix = []
+destroyed_ships = 0
+
+for r in range(n):
+    matrix.append(list(map(int, input().split(' '))))
+
+command_line = input().split(' ')
+commands = [[int(c[0]), int(c[2])] for c in command_line]
+
+for c in commands:
+    if matrix[c[0]][c[1]] > 0:
+        matrix[c[0]][c[1]] -= 1
+        if matrix[c[0]][c[1]] == 0:
+            destroyed_ships += 1
+
+print(destroyed_ships)
 
 
 # Task 5
@@ -262,7 +259,7 @@ while all_dots:
         max_connected_dots = len(connected_dots)
         max_connected_dots_coordinates = connected_dots
 
-# otput the result
+# output the result
 print(max_connected_dots)
 # print(max_connected_dots_coordinates)
 
