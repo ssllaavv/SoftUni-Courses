@@ -251,7 +251,6 @@ for r in range(rows):
 
 
 game_is_won = False
-move = []
 
 while commands:
     command = commands.popleft()
@@ -259,40 +258,48 @@ while commands:
         if p[1] == 0:
             game_is_won = True
         else:
-            ok_to_move = True
             matrix[p[0]][p[1]] = '.'
-            p[1] = p[1] - 1
+            p[1] -= 1
+            # if matrix[p[0]][p[1]] != 'B':
+            matrix[p[0]][p[1]] = 'P'
 
     elif command == 'R':
         if p[1] == cols - 1:
             game_is_won = True
         else:
-            ok_to_move = True
             matrix[p[0]][p[1]] = '.'
-            p[1] = p[1] + 1
+            p[1] += 1
+            # if matrix[p[0]][p[1]] != 'B':
+            matrix[p[0]][p[1]] = 'P'
 
     elif command == 'U':
         if p[0] == 0:
             game_is_won = True
         else:
-            ok_to_move = True
             matrix[p[0]][p[1]] = '.'
-            p[0] = p[0] - 1
+            p[0] -= 1
+            # if matrix[p[0]][p[1]] != 'B':
+            matrix[p[0]][p[1]] = 'P'
 
     elif command == 'D':
         if p[0] == rows - 1:
             game_is_won = True
         else:
-            ok_to_move = True
             matrix[p[0]][p[1]] = '.'
-            p[0] = p[0] + 1
+            p[0] += 1
+            # if matrix[p[0]][p[1]] != 'B':
+            matrix[p[0]][p[1]] = 'P'
 
     new_bunnies = set()
     for b in bunnies:
-        new_bunnies.add((b[0], b[1] - 1))
-        new_bunnies.add((b[0], b[1] + 1))
-        new_bunnies.add((b[0] - 1, b[1]))
-        new_bunnies.add((b[0] + 1, b[1]))
+        if b[1] > 0:
+            new_bunnies.add((b[0], b[1] - 1))
+        if b[1] < cols - 1:
+            new_bunnies.add((b[0], b[1] + 1))
+        if b[0] > 0:
+            new_bunnies.add((b[0] - 1, b[1]))
+        if b[0] < rows - 1:
+            new_bunnies.add((b[0] + 1, b[1]))
 
     bunnies = bunnies | new_bunnies
 
@@ -314,7 +321,9 @@ while commands:
         print(f"dead: {p[0]} {p[1]}")
         break
 
-
+    # for r in matrix:
+    #     print(''.join(r))
+    # print()
 
 
 
