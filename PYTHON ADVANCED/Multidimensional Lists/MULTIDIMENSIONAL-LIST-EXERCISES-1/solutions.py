@@ -9,11 +9,11 @@ def find_diagonals():
     return [primary_diagonal, secondary_diagonal]
 
 
-# primary_diagonal, secondary_diagonal = find_diagonals()
-# print(f'Primary diagonal: {", ".join(list(map(str, primary_diagonal)))}. '
-#              f'Sum: {sum(primary_diagonal)}')
-# print(f'Secondary diagonal: {", ".join(list(map(str, secondary_diagonal)))}. '
-#              f'Sum: {sum(secondary_diagonal)}')
+primary_diagonal, secondary_diagonal = find_diagonals()
+print(f'Primary diagonal: {", ".join(list(map(str, primary_diagonal)))}. '
+             f'Sum: {sum(primary_diagonal)}')
+print(f'Secondary diagonal: {", ".join(list(map(str, secondary_diagonal)))}. '
+             f'Sum: {sum(secondary_diagonal)}')
 
 
 # Task 2
@@ -235,14 +235,14 @@ if not game_is_over:  # if the game is not over but there are no more command, p
 # Task 10
 from collections import deque
 
-rows, cols = [int(x) for x in input().split()]
-matrix = [list(input()) for _ in range(rows)]
-commands = deque(input())
+rows, cols = [int(x) for x in input().split()]   # read the size of the matrix
+matrix = [list(input()) for _ in range(rows)]   # read initial state of the field
+commands = deque(input())   # read the commands
 
-p = []
-bunnies = set()
+p = []   # assign variable to keep the coordinates of the player
+bunnies = set()  # assign variable to keep all the bunnies coordinate
 
-for r in range(rows):
+for r in range(rows):   # find the player and all the bunnies
     for c in range(cols):
         if matrix[r][c] == 'P':
             p = [r, c]
@@ -250,48 +250,48 @@ for r in range(rows):
             bunnies.add((r, c))
 
 
-game_is_won = False
+game_is_won = False  # if the command gets the player out of the field, change to True
 
-while commands:
+while commands:   # start to iterate through read the commands
     command = commands.popleft()
-    if command == 'L':
+    if command == 'L':  # handle Left command
         if p[1] == 0:
             game_is_won = True
         else:
             matrix[p[0]][p[1]] = '.'
             p[1] -= 1
-            # if matrix[p[0]][p[1]] != 'B':
-            matrix[p[0]][p[1]] = 'P'
+            if matrix[p[0]][p[1]] != 'B':
+                matrix[p[0]][p[1]] = 'P'
 
-    elif command == 'R':
+    elif command == 'R':  # handle Right command
         if p[1] == cols - 1:
             game_is_won = True
         else:
             matrix[p[0]][p[1]] = '.'
             p[1] += 1
-            # if matrix[p[0]][p[1]] != 'B':
-            matrix[p[0]][p[1]] = 'P'
+            if matrix[p[0]][p[1]] != 'B':
+                matrix[p[0]][p[1]] = 'P'
 
-    elif command == 'U':
+    elif command == 'U':  # handle Up command
         if p[0] == 0:
             game_is_won = True
         else:
             matrix[p[0]][p[1]] = '.'
             p[0] -= 1
-            # if matrix[p[0]][p[1]] != 'B':
-            matrix[p[0]][p[1]] = 'P'
+            if matrix[p[0]][p[1]] != 'B':
+                matrix[p[0]][p[1]] = 'P'
 
-    elif command == 'D':
+    elif command == 'D':  # handle down command
         if p[0] == rows - 1:
             game_is_won = True
         else:
             matrix[p[0]][p[1]] = '.'
             p[0] += 1
-            # if matrix[p[0]][p[1]] != 'B':
-            matrix[p[0]][p[1]] = 'P'
+            if matrix[p[0]][p[1]] != 'B':
+                matrix[p[0]][p[1]] = 'P'
 
     new_bunnies = set()
-    for b in bunnies:
+    for b in bunnies:  # find all new (spreading) bunnies
         if b[1] > 0:
             new_bunnies.add((b[0], b[1] - 1))
         if b[1] < cols - 1:
@@ -301,29 +301,33 @@ while commands:
         if b[0] < rows - 1:
             new_bunnies.add((b[0] + 1, b[1]))
 
-    bunnies = bunnies | new_bunnies
+    bunnies = bunnies | new_bunnies  # remove the redundancies of the bunnies coordinates
 
-    for r in range(rows):
+    for r in range(rows):  # place all bunnies in the field
         for c in range(cols):
             if (r, c) in bunnies:
                 matrix[r][c] = 'B'
 
-    if game_is_won:
-        matrix[p[0]][p[1]] = '.'
+    if game_is_won:  # in case the game is won, print expected output
+        if tuple(p) not in bunnies:
+            matrix[p[0]][p[1]] = '.'
         for r in matrix:
             print(''.join(r))
         print(f"won: {p[0]} {p[1]}")
         break
 
-    if tuple(p) in bunnies:
+    if tuple(p) in bunnies:  # in case the player is dead, print the expected output
         for r in matrix:
             print(''.join(r))
         print(f"dead: {p[0]} {p[1]}")
         break
 
+    # print(command)
     # for r in matrix:
     #     print(''.join(r))
     # print()
+
+
 
 
 
