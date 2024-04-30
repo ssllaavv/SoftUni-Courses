@@ -1,2 +1,2 @@
 # SoftUni-Courses
-Tasks and projects form my education in SofUni
+Tasks and projects form SofUni courses
