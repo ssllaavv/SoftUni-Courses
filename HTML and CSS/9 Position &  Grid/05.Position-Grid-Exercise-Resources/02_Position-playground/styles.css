@@ -1,0 +1,37 @@
+
+
+body {
+    height: 100%;
+}
+
+.viewport {
+    position: relative;
+    height: 50vh;
+}
+
+/* .card img {
+    width: 20%;
+} */
+
+.image{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.card i {
+    font-size: 3rem;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: rgb(227, 214, 214);
+}
+
+.viewport:first-of-type {
+    background: linear-gradient(to right, #185b9d, #41cba1);
+}
+
+.viewport:last-of-type {
+    background: linear-gradient(to right, #a83376, #d18014);
+}

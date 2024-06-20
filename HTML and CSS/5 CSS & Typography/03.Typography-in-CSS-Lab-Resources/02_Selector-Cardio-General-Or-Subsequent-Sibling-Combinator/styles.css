@@ -1,0 +1,6 @@
+article > span:nth-of-type(2) {
+    color: red;
+}
+article > span:nth-of-type(3) {
+    color: red;
+}

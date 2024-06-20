@@ -1,0 +1,27 @@
+body {
+    padding: 5px 15px;
+    background-color: #e4e978;
+    width: 700px
+}
+
+body > section > article {
+    font-style: italic;
+    color: #5c6e91;
+    
+}
+
+body > section > article h1{
+    font-size: 24px;
+}
+
+body > section > article h2{
+    font-size: 20px;
+}
+
+article {
+    border: 1px solid #b2ad7d;
+    margin: 15px 10px;
+    padding: 5px 15px;
+    background-color:#f2f4c0;
+}
+

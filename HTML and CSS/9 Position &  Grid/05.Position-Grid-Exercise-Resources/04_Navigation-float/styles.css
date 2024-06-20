@@ -1,0 +1,103 @@
+body {
+    background-color: rgb(238, 238, 238) ;
+    padding: 70px;
+    font-size: 1.2rem;
+}
+
+.main-header > * {
+    display: block;
+}
+
+.main-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    border-bottom: 3px solid black;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.main-header p {
+    font-size: 42px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.main-header nav li {
+    list-style: none;
+    display: inline-block;
+    padding-right: 30px;
+    padding-top: 30px;
+}
+
+.main-header nav li a{
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+a {
+    color: rgb(0, 102, 0) ;
+}
+
+h1, h2, h3 {
+    font-family: Georgia, serif;
+    font-weight: 400;
+}
+
+h1, h2 {
+    font-size: 30px;
+}
+
+img {
+    padding: 6px;
+    border: 3.5px solid black;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.25) ;
+}
+
+.level-1 img {
+    float: right;
+    margin: 0 0 15px 15px;
+}
+
+.level-2 img {
+    float: left;
+    margin: 0 15px 15px 0;
+}
+
+aside {
+    margin-left: 50px;
+}
+
+aside a {
+    text-decoration: none;
+}
+
+main {
+    margin-right: 20px;
+}
+
+.half {
+    display: grid;
+    grid-template-columns: 6fr 5fr;
+}
+
+.half blockquote {
+    margin: 0 0 0 30px;
+    font-style: italic;
+    color: rgb(87, 87, 87);
+}
+.half blockquote > p:last-of-type {
+    text-align: right;
+}
+
+.half > p {
+    padding-right: 30px;
+    border-right: 3.5px solid lightgray;
+} 
+
+
+

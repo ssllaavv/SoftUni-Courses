@@ -1,0 +1,75 @@
+ul li {
+    display: inline-block;
+    list-style: none;
+    padding: 20px;
+    margin: 14px;
+    border-radius: 50%;
+    background-color: rgb(204, 204, 204);
+}
+
+ul li a {
+    display: block;
+    text-decoration: none;
+    font-size: 2rem; 
+    color: rgb(34, 34, 34); 
+    line-height: 0.3;
+}
+
+.facebook:hover a
+{
+    color: #1877F2;
+    
+}
+
+.facebook:hover {
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.3);
+}
+
+.twetter:hover a
+{
+    color: #1DA1F2;
+    
+}
+
+.twetter:hover {
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.3);
+}
+
+.google:hover a
+{
+    color: #DB4437;
+    
+}
+
+.google:hover {
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.3);
+}
+
+.linkedin:hover a
+{
+    color: #0077B5;
+    
+}
+
+.linkedin:hover {
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.3);
+}
+
+.instagram:hover a
+{
+    color: #E4405F;
+    
+}
+
+.instagram:hover {
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.3);
+}
+
+* {
+    transition: all 0.2s ease;
+}
+
+
+
+
+
