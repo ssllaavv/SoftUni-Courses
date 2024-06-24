@@ -1,0 +1,73 @@
+*, 
+*::before, 
+*::after {
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(238, 238, 238);
+    margin: 50px auto;
+    width:800px;
+    
+}
+
+.card {
+    font-size: 0.8rem;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    /* width: 25%; */
+    box-shadow: 0 0 20px rgb(0, 0, 0, 0.5);
+    margin: 20px 10px;
+}
+
+.card img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.card section,
+.card footer {
+    padding: 10px 20px;
+}
+
+.card footer {
+    border-top: 1px solid rgb(193, 193, 193);
+}
+
+h2 {
+    margin-left: 20px;
+}
+
+
+section.masonry {
+    display: inline-block;
+    width: 30%;
+    height: 1500px;
+    vertical-align: top;
+}
+
+.card-layout.flex {
+    display: flex;
+    flex-wrap: wrap;
+    height: 1700px;
+  
+}
+.card-layout.flex .card{
+    width: 30%;
+    margin: 10px;
+    
+}
+
+.card-layout.flex h2 {
+    flex-basis: 100%;
+}
+
+.card-layout.flex .card{
+    display: flex;
+    flex-direction: column;
+}
+.card-layout.flex .card footer{
+    margin-top: auto;
+}
+

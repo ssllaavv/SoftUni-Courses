@@ -1,0 +1,99 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    font-family: Helvetica, sans-serif;
+}
+
+
+body{
+    background-color: rgb(238, 238, 238);
+    margin: 80px 100px;
+}
+
+.page {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.main {
+    flex-basis: 60%;
+    margin-right: 65px;
+}
+
+aside {
+    font-size: 0.8rem;
+}
+
+
+img {
+    background-color: rgb(255, 255, 255);
+    border: 4px solid black;
+    padding: 6px;
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.5);
+}
+.article.first img {
+    float: right;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+.article.third img {
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote,
+h2, 
+h3 {
+    font-family: Georgia, serif;
+}
+
+h1 {
+    text-transform: uppercase;
+}
+
+h2,
+h3 {
+    font-size: 1.5rem;
+    font-weight: 550;
+}
+
+header {
+    border-bottom: 2px solid black;
+    flex-basis: 100%;
+}
+
+a {
+    all: unset;
+    padding: 0px 20px;
+    cursor: pointer;
+    color: rgb(0, 153, 0);
+}
+
+.p-blockquote {
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+blockquote {
+    margin: 0;
+    padding-left: 50px;
+    flex-basis: 45%;
+    border-left: 3px solid rgb(184, 184, 184);
+    font-style: italic;
+   
+}
+
+.p-blockquote > p {
+    flex-basis: 50%;
+}
+
+blockquote p:last-child {
+    text-align: right;
+}
+
+
+
+
