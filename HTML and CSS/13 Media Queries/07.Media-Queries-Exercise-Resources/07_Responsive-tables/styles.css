@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 50px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+th, td {
+    border: 2px solid #a2a2a2; /* Sets border color, style, and width */
+    padding: 6px 8px;
+    text-align: left;
+}
+
+th {
+    font-weight: bold;
+    color: white;
+    background-color: black;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: rgb(230, 230, 230);
+}
+
+
+
+/* Responsive design for screens with max-width 600px */
+@media screen and (max-width: 600px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+    
+    thead tr {
+        display: none;
+    }
+    
+    
+    td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 50%;
+        position: relative;
+       
+    }
+
+    td{
+        border-bottom: 1px;
+    }
+
+    
+    td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: calc(50% - 10px);
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+    }
+
+    tr:last-child td:last-of-type {
+        border-bottom: 2px solid #a2a2a2;
+    }
+}

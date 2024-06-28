@@ -1,0 +1,281 @@
+/* GENERAL */
+html {
+    background-color: rgb(238, 238, 238);
+    margin: 0px;
+}
+
+
+body {
+    margin: 0px 200px;
+   
+}
+
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+h2 {
+    font-family: Georgia, serif;
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 30px;
+
+}
+
+button {
+    padding: 6px 16px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border: 2px solid black;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button:hover {
+    scale: 1.05;
+    box-shadow: 0 0 8px rgb(0, 0, 0, 0.4);
+}
+
+.menu-icon {
+    display: none;
+}
+
+/* HEADER */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 80px;
+}
+
+header h1 {
+    font-family: Georgia, serif;
+    font-weight: 500;
+    color: rgb(97 55 119);
+}
+
+header p {
+    text-transform: uppercase;
+    transform: scaleY(2);
+    transform-origin: bottom;
+    font-size: 0.5rem;
+    font-weight: 500;
+}
+
+
+/* NAVIGATION */
+
+header nav {
+    display: flex;
+    align-items: center;
+
+}
+
+header nav ul {
+    display: flex;
+}
+
+header nav ul li {
+    list-style: none;
+    margin-left: 35px;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.globe {
+    font-size: 10rem;
+    margin: auto;
+}
+
+/* SECTIONS */
+
+.main {
+    margin: 0 80px;
+}
+
+.need-first {
+    display: grid;
+    grid-template-columns: 7fr 4fr;
+}
+
+.need-first p,
+.need-first button {
+    margin-bottom: 30px;
+}
+
+
+.our-team>*,
+.sign-up>*,
+.testemonials>* {
+    text-align: center;
+}
+
+.our-team h2 {
+    margin-top: 70px;
+    margin-bottom: 20px;
+}
+
+.line {
+    border: 2px solid black;
+    width: 100px;
+    margin: auto;
+    margin-bottom: 40px;
+}
+
+
+/* CARD */
+.card img {
+    border-radius: 100%;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 3px solid lightgray;
+    box-shadow: 0 0 6px rgb(0, 0, 0, 0.6);
+    margin-bottom: 30px;
+}
+
+/* CARDS */
+.cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 60px;
+}
+
+.name {
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.title {
+    margin-bottom: 20px;
+}
+
+.description {
+    font-style: italic;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 40px;
+}
+
+
+/* SIGN UP FOR OUR NEWSLETTER */
+
+.sign-up {
+    margin: 40px 0px 60px 0px;
+    padding-top: 30px;
+    padding-bottom: 60px;
+    background-color: rgb(97 55 119);
+    position: relative;
+    right: 200px;
+    width: 98.3vw;
+    /* overflow: hidden; */
+    /* display: none; */
+}
+
+.sign-up h2 {
+    color: white;
+    font-size: 2.3rem;
+}
+
+.sign-up input {
+    width: 350px;
+    height: 30px;
+}
+
+.sign-up button {
+    height: 35px;
+}
+
+
+/* FOOTER */
+footer {
+    box-sizing: border-box;
+    margin: 50px 0 0 0;
+    padding: 50px 280px;
+    padding-right: 200px;
+    width: 98.3vw;
+    height: 260px;
+    position: relative;
+    right: 200px;
+    background-color: rgb(220, 220, 220);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 50px;
+    font-size: 1rem;
+    line-height: 1.3;
+    /* overflow: hidden; */
+    /* display: none; */
+}   
+
+
+footer .about {
+    padding-right: 40px;
+}
+
+footer h2 {
+    font-size: 2.5rem;
+}
+
+footer h3 {
+    font-family: Georgia, serif;
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+footer i {
+    padding-right: 8px;
+}
+
+.sitemap ul {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+    
+}
+
+
+/* LAPTPOP */
+@media screen and (max-width: 1800px) {
+    body {
+        margin: 0 30px;
+    }
+
+    footer {
+        padding: 50px 80px;
+        right: 20px;
+    }
+
+    .sign-up {
+        right: 20px;
+    }
+}
+
+/* TABLET */
+@media screen and (max-width: 1280px) {
+    footer {
+        grid-template-columns: 1fr;
+        height: unset;
+        padding: 50px 30px;
+    }
+
+    .main {
+        margin:0px ;
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+    }
+
+    .menu-icon {
+        display: inline-block;
+    }
+
+    header nav ul {
+        display: none;
+    }
+}

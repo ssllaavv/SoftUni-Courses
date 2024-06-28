@@ -1,0 +1,179 @@
+/* TODO	create a valid CSS Grid  */
+/* TODO make the layout responsive by using media queries */
+
+*,
+*:before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+
+/* ----------- Styles ----------- */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  display: grid;
+  grid-template-columns: 120px auto;
+  gap: 10px;
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "aside main"
+    "footer footer";
+}
+
+body header {
+  display: grid;
+  grid-template-columns: 60px auto;
+  grid-template-areas:
+    "logo header-text";
+  gap: 10px;
+  grid-area: header;
+  background: rgb(181, 216, 255);
+  padding: 0px 3px 4px 3px;
+  border-radius: 3px;
+}
+
+body header a {
+  grid-area: logo;
+  align-self: center;
+  text-align: center;
+  font-size: 2.2rem;
+  text-decoration: none;
+  padding-top: 6px;
+}
+
+body header h1 {
+  grid-area: header-text;
+  margin: 0px;
+  align-self: center;
+  font-size: 1.5em;
+  padding-top: 8px;
+}
+
+aside {
+  grid-area: aside;
+  background: rgb(181, 216, 255);
+  border-radius: 3px;
+}
+
+aside ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 10px;
+}
+
+aside ul a {
+  display: block;
+  padding: 5px;
+  color: rgb(86, 40, 129);
+  text-decoration: none;
+}
+
+main {
+  grid-area: main;
+}
+
+main form {
+  width: 100%;
+}
+
+main form table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* main form {
+  margin-right: 20px;
+} */
+
+main form table th,
+main form table td {
+  border: 2px solid white;
+}
+
+main form table th {
+  text-align: left;
+  background-color: #628fcf;
+  color: white;
+  width: 120px;
+  padding: 10px;
+}
+
+main form table input,
+main form table textarea,
+main form table select {
+  margin: 10px;
+  width: calc(100% - 20px);
+  border-color: gray;
+}
+
+.title td {
+  background-color: rgb(181, 216, 255);
+}
+
+
+.description td{
+  background-color: #dfe9f3;
+}
+
+main form button {
+  font-size: 1.3rem;
+  padding: 10px 30px;
+  background-color: rgb(181, 216, 255);
+  border-radius: 10px;
+  margin-top: 10px;
+  border: 2px solid gray;
+  width: 100%;
+}
+
+
+/* main h1 {
+  font-size: 1.5em;
+} */
+
+footer {
+  grid-area: footer;
+  background: rgb(181, 216, 255);
+  padding: 8px;
+  border-radius: 3px;
+}
+
+/* main section {
+  background: rgb(171, 208, 243);
+  padding: 15px;
+  border-radius: 5px;
+} */
+
+/* main div a {
+  color: rgb(86, 40, 129);
+  background: rgb(171, 208, 243);
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid rgb(125, 170, 238);
+  margin: 10px 10px 0px 0px;
+  text-align: center;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  vertical-align: middle;
+} */
+
+/* main div a span {
+  display: block;
+  font-size: 2.2em;
+  padding-top: 20px;
+} */
+
+
+
+@media (max-width: 500px) {
+  body {
+    grid-template-areas:
+      "header header"
+      "aside aside"
+      "main main"
+      "footer footer";
+  }
+}
