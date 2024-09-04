@@ -1,0 +1,221 @@
+/* General */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Lato;
+    margin:  0;
+}
+
+h1, h2, h3 {
+    font-family: Montserrat;
+}
+
+
+/* Header */
+header {
+    display: flex;
+    background-color: black;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+}
+
+.logo img {
+    height: 50px;
+}
+
+header nav ul {
+    display: flex;
+}
+
+header nav li a {
+    text-decoration: none;
+    color: white;
+    margin-right: 40px;
+    font-size: 20px;
+}
+
+
+
+/* Green Background */
+.green-background {
+    background-color: rgb(87 182 96);;
+    padding: 40px;
+    margin-bottom: 400px;
+}
+
+.green-background h2 {
+    padding-top: 50px;
+    height: 300px;
+    color: white;
+    text-align: center;
+    font-size: 1.8rem;
+    z-index: 99999;
+}
+
+
+/* Hero Image */
+.hero-image img{
+    width: 850px;
+    position: absolute;
+    top: 130px;
+}
+
+
+/* Cards */
+.hero .cards {
+    display: flex;
+    justify-content: center;
+    gap: 260px;
+    position: absolute;
+    width: 100%;
+    top: 200px;
+}
+
+.hero .cards .card {
+    height: 490px;
+    width: 500px;
+    border: 1px solid rgb(122, 122, 122);
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 0 0 8px rgb(0, 0, 0, 0.5);
+    color: rgb(84 84 107);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;  
+}
+
+.hero .cards .card h2{
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+}
+
+.hero .cards .card  ul {
+    list-style: circle;
+    font-size: 1.2rem;
+    padding-left: 60px;
+}
+
+
+.hero .cards .card  ul li {
+    margin-bottom: 10px;
+}
+
+.hero .cards .card button {
+    background-color: rgb(87 182 96);
+    display: block;
+    margin: 20px auto;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-size: 1.2rem;
+    padding: 12px 40px;
+    cursor: pointer;
+}
+
+.cards .card footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    background-color: black;
+    height: 90PX;  
+}
+
+.cards .card footer span {
+    display: block;
+    padding: 10px 15PX;
+    color: white;
+
+}
+
+.cards .card:first-child footer span:first-child {
+    border-right: 1px solid white;
+}
+
+
+/* Section About */
+.about {
+    display: flex;
+    margin: 0 180px 0 100px;
+    font-size: 1.2rem;
+    gap: 70px;
+}
+
+.about h2 {
+    font-size: 1.4rem;
+}
+
+.about .dogpal-image img {
+    width: 500px
+}
+
+
+
+/* Section Experience */
+.experience {
+    text-align: center;
+    margin-top: 70px;
+}
+
+.experience h1 {
+    font-size: 3rem;
+}
+
+.experience p {
+    font-size: 1.2rem;
+}
+
+.experience .table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background-color: rgb(204 203 203);;
+    width: 1200px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+}
+
+.experience .row {
+    display: flex;
+    height: 45px; 
+    width: 100%;  
+}
+
+.experience .row:nth-child(even) {
+    background-color: rgb(149 214 164);;
+}
+
+.row-content {
+    flex-grow: 2;
+    text-align: left;
+    align-self: center;
+    padding-left: 20px;
+}
+
+.check svg, 
+.cross svg {
+   margin: 0 80px;
+   scale: 1.2;
+   position: relative;
+   top: 10px;
+}
+
+/* Footer */
+.main-footer {
+    height: 80px;
+    color: white;
+    background-color: black;
+    text-align: center;
+    font-size: 1.3rem;
+    padding-top: 10px;
+    margin-top: 100px;
+}
+
+

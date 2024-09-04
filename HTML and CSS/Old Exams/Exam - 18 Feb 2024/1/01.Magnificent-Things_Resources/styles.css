@@ -1,0 +1,80 @@
+/* General */
+
+* {
+    box-sizing: border-box;
+    font-family: Inter, sans-serif;
+    font-size: 1.2rem;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(153 218 251);
+}
+
+
+
+/* Main */
+main {
+    width: 1900px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 70px 50px;
+    margin: 0 auto;
+}
+
+
+/* Picture */
+.picture img {
+    width: 100%;
+    object-fit: cover;
+    box-shadow: 10px 10px 15px rgb(0, 0, 0, 1);
+}
+
+.picture {
+    width: 35%;
+}
+
+/* Content */
+.content p {
+    margin: 2px;
+}
+
+.content h1  {
+    font-size: 4rem;
+    width: 800px;
+}
+
+
+/* Buttons */
+.content button {
+    margin: 40px 30px 40px 0;
+    padding: 28px;
+    border-radius: 6px;
+
+}
+
+.content .get-started {
+    background-color: rgb(96 168 97);
+}
+
+.content .learn-more {
+    background-color: white;
+    border: none;
+}
+
+button a {
+    text-decoration: none;
+    padding: 28px;
+    color: black;
+}
+
+.content .get-started:hover {
+    background-color: black;
+}
+
+.content .get-started:hover A {
+    color: wheat;
+}
+

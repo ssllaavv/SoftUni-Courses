@@ -1,0 +1,234 @@
+/* General */
+* {
+    box-sizing: border-box;
+    font-family: Karla;
+    font-size: 18px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(247 240 234);;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* Hero image */
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    
+}
+
+.hero-image {
+    width: 100%;
+    height: 750px;
+    position: absolute;
+    z-index: -1;
+}
+
+
+/* Hero content  */
+
+.hero {
+    height: 750px;
+    padding: 30px 100px;
+    background-color: rgb(0, 0, 0, 0.4);
+}
+
+.hero header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 240px;
+}
+
+.hero header .logo img {
+    height: 55px;
+}
+
+.hero nav ul {
+    display: flex;
+    list-style: none;
+}
+
+.hero nav ul a {
+    text-decoration: none;
+    padding-left: 55px;
+    color: white;
+}
+
+.hero-content {
+    color: white;
+}
+
+.hero-content h1 {
+    font-family: "'Cormorant";
+    font-size: 90px;
+    font-weight: 500;
+    text-align: center;
+    
+}
+
+.hero-content p {
+    text-align: center;
+    width: 600px;
+    margin: 100px auto;
+}
+
+
+
+/* Testemonials */
+.testemonials {
+    width: 1000px;
+    margin: auto;
+}
+
+.testemonials  h3{
+    margin: 50px 0;
+    font-weight: 400;
+}
+
+.testemonials blockquote {
+    padding: 0;
+    margin: 0;
+    font-family: "'Cormorant";
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 1.03;
+    font-style: italic;
+}
+
+
+/* Support */
+.support {
+    height: 280px;
+    background-color: rgb(208 83 77);
+    color: white;
+    margin-top: 150px;
+}
+
+.support {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.support h3 {
+    font-size: 1.5em;
+}
+
+.support p {
+    width: 330px;
+    text-align: center;
+}
+
+/* Understand  */
+
+.understand {
+    width: 580px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 60px auto;  
+}
+.understand img{
+    width: 580px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.understand h2,
+.understand p {
+    width: 580px;
+
+}
+
+.understand h2 {
+    font-family: "'Cormorant";
+    font-size: 60px;    
+    text-align: center;
+    font-weight: 600;
+}
+
+.understand p {
+    font-size: 1.1em;
+}
+
+.understand button {
+    margin: 40px 0 ;
+    padding: 6px 18px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.understand .read-more {
+    align-self: flex-start;
+}
+
+
+
+/* Find */
+.find {
+    background-color:  rgb(208 83 77);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 500px;
+}
+
+.find h2 {
+    font-family: "'Cormorant";
+    font-size: 60px;  
+}
+
+.find p {
+    width: 1000px;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.find .find-btn {
+    width: 160px;
+    background-color: rgb(244 217 135);
+    border: none;
+    font-size: 0.8em;
+    padding: 16px 10px;
+    border-radius: 40px;
+    margin-top: 50px;
+}
+
+
+/* Footer  */
+footer {
+    height: 260px;
+    padding: 50px 150px;
+    background-color: rgb(51 43 42);
+}
+
+
+footer .logo {
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+footer p {
+    font-size: 0.9em;
+    width: 450px;
+    color: white;
+}
+
+footer .all-rights {
+    color: rgb(131, 111, 108);
+}

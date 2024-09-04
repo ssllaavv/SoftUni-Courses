@@ -1,0 +1,22 @@
+.navigation-links-nav {
+    flex-direction: column;
+}
+
+.home-header { 
+    height: unset;
+    max-width: unset;
+    padding-top: 20px;
+}
+
+.home-container01 {
+    
+}
+
+.home-nav {
+    padding-left: 33vw;
+}
+
+.navigation-links-nav {
+    align-items: flex-start;
+}
+
