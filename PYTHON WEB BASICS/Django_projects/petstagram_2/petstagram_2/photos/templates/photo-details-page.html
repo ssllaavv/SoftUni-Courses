@@ -13,11 +13,15 @@
                     <div class="userDetails">
 
                         <!-- Link to User Profile Details Page-->
-                        <a href="{% url 'profile details' 1 %}">
+                        <a href="{% url 'profile details' photo.user.pk %}">
                             <div class="profilepic">
                                 <div class="profile_img">
                                     <div class="image">
-                                        <img src="{% static 'images/person.png' %}" alt="img8">
+                                        {% if photo.user.profile_picture %}
+                                            <img src="{{ photo.user.profile_picture }}" alt="img8">
+                                        {% else %}
+                                            <img src="{% static 'images/person.png' %}" alt="img8">
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -25,9 +29,9 @@
                         <h3>
 
                             <!-- Link to User Profile Details Page -->
-                            <a href="{% url 'profile details' 1 %}">
+                            <a href="{% url 'profile details' photo.user.pk %}">
                                 <!-- IF user has first name and last name -->
-                                Diyan Kalaydzhiev
+                                {{ photo.user.get_user_name }}
                                 <!-- else -->
                                 <!-- show user username -->
                             </a>
@@ -36,12 +40,13 @@
 
                             {% if photo.location %}
                             <!-- IF the photo has location -->
-                            <span>{{ photo.location }}</span>
+                                <span>{{ photo.location }}</span>
                             {% endif %}
 
                             <!-- IF the viewer is the creator of the photo -->
-                            <div class="edit-delete-btns">
+                            {% if photo.user == request.user %}
 
+                            <div class="edit-delete-btns">
                                 <!-- Link to Edit Pet Photo Page -->
                                 <a href="{% url 'photo edit'  photo.pk %}">
                                     <img class="edit-img" src="{% static 'images/edit-pen-icon-6.jpg' %}"
@@ -53,6 +58,7 @@
                                     <img class="bin-img" src="{% static 'images/icon-remove-22.jpg' %}" alt="bin button">
                                 </a>
                             </div>
+                            {% endif %}
                             <!-- End IF the viewer is the creator of the photo -->
 
                         </h3>
@@ -81,7 +87,7 @@
 									<a href="{% url 'like' photo.pk %}">
 
 
-                                        {% if likes %}
+                                        {% if photo_is_liked_by_user %}
 										<!-- IF user has liked the photo -->
                                         <svg style="color: red"
                                              xmlns="http://www.w3.org/2000/svg"
@@ -155,7 +161,7 @@
 
                     {% for pet in photo.tagged_pets.all %}
                     <!-- Link to First Tagged Pet Details Page -->
-                    <a href="{% url 'pet details' 'doncho' pet.slug %}">
+                    <a href="{% url 'pet details' pet.user.username pet.slug %}">
                         <p class="message">
                             <b>{{ pet.name }}</b>
                         </p>
@@ -186,15 +192,19 @@
                                     <div class="profilepic">
                                         <div class="profile_img">
                                             <div class="image">
-                                                <!-- User Profile Image -->
-                                                <img src="{% static 'images/person.png' %}" alt="img8">
+                                                {% if comment.user.profile_picture %}
+                                                    <img src="{{ comment.user.profile_picture }}" alt="img8">
+                                                    <!-- User Profile Image -->
+                                                {% else %}
+                                                    <img src="{% static 'images/person.png' %}" alt="img8">
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>
                                     <p>
                                         <!-- Link to User Profile Details Page-->
                                         <!-- User First and/or Last Name or username-->
-                                        <a href="{% url 'profile details' 1 %}">Steven Ivanov</a>
+                                        <a href="{% url 'profile details' comment.user.pk %}">{{ comment.user.get_user_name }}</a>
                                         <!-- User Comment -->
                                         {{ comment.text }}
                                     </p>

@@ -10,20 +10,24 @@
         <div class="top">
             <div class="userDetails">
                 <!-- Link to User Profile Page -->
-                <a href="{% url 'profile details' 1 %}">
+                <a href="{% url 'profile details' photo.user.pk %}">
                     <div class="profilepic">
                         <div class="profile_img">
                             <div class="image">
-                                <img src="{% static 'images/person.png' %}" alt="img8">
+                                {% if photo.user.profile_picture %}
+                                    <img src="{{ photo.user.profile_picture }}" alt="img8">
+                                {% else %}
+                                    <img src="{% static 'images/person.png' %}" alt="img8">
+                                {% endif %}
                             </div>
                         </div>
                     </div>
                 </a>
                 <h3>
                     <!-- Link to User Profile Page -->
-                    <a href="{% url 'profile details' 1 %}">
+                    <a href="{% url 'profile details' photo.user.pk %}">
                         <!-- if user has first name and last name -->
-                        Diyan Kalaydzhiev
+                        {{ photo.user.get_user_name }}
                         <!-- else -->
                         <!-- show user username -->
                     </a>
@@ -53,7 +57,7 @@
                     <span class="heart">
 									<a href="{% url 'like' photo.pk %}">
 
-                                        {% if photo.like_set.all %}
+                                        {% if photo.pk in all_liked_photos_by_request_user %}
 
 										<!-- if user has liked the photo -->
                                         <svg style="color: red"
@@ -132,7 +136,7 @@
             {% for pet in photo.tagged_pets.all %}
 
                 <!-- Link to First Tagged Pet Details Page-->
-                <a href="{% url 'pet details' 'doncho' pet.slug %}">
+                <a href="{% url 'pet details' pet.user.username pet.slug %}">
                     <p class="message">
                         <b>{{ pet.name }}</b>
                     </p>

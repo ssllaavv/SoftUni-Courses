@@ -1,21 +1,63 @@
+import http
+
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views import generic as views
+from django.contrib.auth import views as auth_views
+
+from petstagram_2.accounts.forms import PetstagramUserCreationForm, LoginForm, PetstagramUserEditForm
+from petstagram_2.accounts.models import PetstagramUser
 
 
-def register(request):
-    return render(request, template_name='register-page.html')
+class UserRegisterView(views.CreateView):
+    model = PetstagramUser
+    form_class = PetstagramUserCreationForm
+    template_name = 'register-page.html'
+    success_url = reverse_lazy('login')
 
 
-def login(request):
-    return render(request, template_name='login-page.html')
+class LoginView(auth_views.LoginView):
+    form_class = LoginForm
+    template_name = 'login-page.html'
+    next_page = reverse_lazy('index')
 
 
-def show_profile_details(request, pk):
-    return render(request, template_name='profile-details-page.html')
+# @login_required
+class UserLogoutView(LoginRequiredMixin, auth_views.LogoutView):
+    http_method_names = ["post", "options", "get"]
+    next_page = 'login'
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
 
 
-def edit_profile(request, pk):
-    return render(request, template_name='profile-edit-page.html')
+class UserEditView(LoginRequiredMixin, views.UpdateView):
+    model = PetstagramUser
+    form_class = PetstagramUserEditForm
+    template_name = 'profile-edit-page.html'
+
+    def get_success_url(self):
+        return reverse_lazy('profile details', kwargs={'pk': self.object.pk})
 
 
+class UserDetailsView(LoginRequiredMixin, views.DetailView):
+    model = PetstagramUser
+    template_name = 'profile-details-page.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        total_likes_count = sum(p.like_set.count() for p in self.object.photo_set.all())
+
+        context.update({
+            'total_likes_count': total_likes_count,
+        })
+
+        return context
+
+
+@login_required
 def delete_profile(request, pk):
     return render(request, template_name='profile-delete-page.html')
+
