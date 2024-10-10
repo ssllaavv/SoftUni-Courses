@@ -2,7 +2,7 @@ import http
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import views as auth_views
@@ -57,7 +57,13 @@ class UserDetailsView(LoginRequiredMixin, views.DetailView):
         return context
 
 
-@login_required
-def delete_profile(request, pk):
-    return render(request, template_name='profile-delete-page.html')
+class UserDeleteView(LoginRequiredMixin, views.DeleteView):
+    model = PetstagramUser
+    template_name = 'profile-delete-page.html'
+    success_url = reverse_lazy('index')
+
+    def post(self, request, *args, **kwargs):
+        user = self.get_object()
+        user.delete()
+        return redirect(self.success_url)
 

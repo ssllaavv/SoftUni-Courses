@@ -11,8 +11,8 @@
                 <div class="image">
 
                     <!-- Profile Image -->
-                    {% if user.profile_picture %}
-                        <img src="{{ user.profile_picture }}" alt="img8">
+                    {% if object.profile_picture %}
+                        <img src="{{ object.profile_picture }}" alt="img8">
                     {% else %}
                         <img src="/static/images/person.png" alt="img8">
                     {% endif %}
@@ -21,10 +21,10 @@
             <div class="personal">
                 <div class="edit">
                     <!-- User Username -->
-                    <p>{{ user.username }}</p>
+                    <p>{{ object.username }}</p>
 
                     <!-- IF the viewer is the owner of the profile -->
-                    {% if request.user == user %}
+                    {% if request.user == object %}
                     <!-- Link to Edit Profile Page -->
                     <a href="{% url 'profile edit' request.user.pk %}">
                         <img class="edit-img" src="/static/images/edit-pen-icon-6.jpg" alt="edit button">
@@ -41,11 +41,11 @@
                 <div class="data">
 
                     <!-- Total Number of Photos by the User -->
-                    <span>{{ user.photo_set.count }}</span>
+                    <span>{{ object.photo_set.count }}</span>
                     <p>photos</p>
 
                     <!-- Total Number of Pets owned by the User -->
-                    <span>{{ user.pet_set.count }}</span>
+                    <span>{{ object.pet_set.count }}</span>
                     <p>pets</p>
 
                     <!-- Total Number of Likes for the User -->
@@ -53,13 +53,13 @@
                     <p>likes</p>
                 </div>
                 <!-- User First and Last Name IF Added -->
-                <h3 class="names">{{ user.get_user_name}}</h3>
+                <h3 class="names">{{ object.get_user_name}}</h3>
 
                 <!-- User Email Address -->
-                <p class="email">{{ user.email }}</p>
+                <p class="email">{{ object.email }}</p>
 
                 <!-- User Gender IF Added -->
-                <p class="gender">{{ user.gender }}</p>
+                <p class="gender">{{ object.gender }}</p>
             </div>
         </div>
         <!-- End Profile Personal Data Section -->
@@ -68,11 +68,11 @@
         <div class="pets">
             <div class="statuses">
 
-                {% for pet in user.pet_set.all  %}
+                {% for pet in object.pet_set.all  %}
 
                 <!-- Start 1st Pet Details Page -->
                 <!-- Link to First Pet Details Page -->
-                <a href="{% url 'pet details' user.username pet.slug %}">
+                <a href="{% url 'pet details' object.username pet.slug %}">
                     <div class="head-pet">
                         <div class="status">
                             <div class="image">
@@ -190,7 +190,7 @@
         <!-- Start Last Uploaded Photos Section -->
         <div class="pet-photos">
 
-            {% for photo in user.photo_set.all %}
+            {% for photo in object.photo_set.all %}
 
             <!-- Link to Last Uploaded Pet Photo -->
             <a href="{% url 'photo details' photo.pk %}">

@@ -23,10 +23,15 @@ def pet_details(request, username, pet_slug):
     pet = Pet.objects.get(slug=pet_slug)
     all_photos = pet.photo_set.all()
     comment_form = CommentForm()
+    if request.user.is_authenticated:
+        all_liked_photos_by_request_user = [like.to_photo_id for like in request.user.like_set.all()]
+    else:
+        all_liked_photos_by_request_user = None
     context = {
         'pet': pet,
         'all_photos': all_photos,
-        'comment_form': comment_form
+        'comment_form': comment_form,
+        'all_liked_photos_by_request_user': all_liked_photos_by_request_user,
     }
 
     return render(request, template_name='pet-details-page.html', context=context)
