@@ -1,5 +1,5 @@
 <h1>
-   Complete view cached!
+    Complete view cached!
 </h1>
 
 <a href="{% url 'create_task' %}">Create random task</a>
@@ -16,7 +16,7 @@
     <p>
         {{ user.username }}, {{ user.pk }}
     </p>
-{% empty %}
+    {% empty %}
     <p>
         No users
     </p>
@@ -25,7 +25,7 @@
 <h2>
     Session count: {{ session_count }} <br>
     User: {{ user }} <br>
-{#    Session dict: {{ session_dict }}#}
+    {#    Session dict: {{ session_dict }}#}
 </h2>
 
 <ul>
@@ -38,10 +38,23 @@
 </ul>
 
 <ul>
-    {% for task in prev_tasks %}
-    <li>
-        <a href="{% url 'show_task' task.pk %}">{{ task.title }}<a>
-    </li>
+    {% for task in page_obj %}
+        <a href="{% url 'show_task' task.pk %}">{{ task.title }}<a> <br>
     {% endfor %}
+    {% if page_obj.has_previous %}
+        <a href="?page=1">first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+    {% endif %}
+    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last</a>
+    {% endif %}
+
+    {#    {% for task in prev_tasks %}#}
+    {#    <li>#}
+    {#        <a href="{% url 'show_task' task.pk %}">{{ task.title }}<a>#}
+    {#    </li>#}
+    {#    {% endfor %}#}
 </ul>
 

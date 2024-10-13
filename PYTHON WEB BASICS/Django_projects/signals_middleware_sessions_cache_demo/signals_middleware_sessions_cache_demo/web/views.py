@@ -1,5 +1,6 @@
 import random
 
+from django.core.paginator import Paginator
 from django.views import generic as views
 from django.contrib.auth.backends import UserModel
 from django.shortcuts import render, redirect
@@ -9,7 +10,7 @@ from django.core.cache import cache
 from signals_middleware_sessions_cache_demo.web.models import Task
 
 
-# @view_cache.cache_page(timeout=3)
+@view_cache.cache_page(timeout=3)
 def complete_view_cache(request):
 
     request.session['count'] = request.session.get('count', 0) + 1
@@ -23,6 +24,11 @@ def complete_view_cache(request):
     users = cache.get('users')
     prev_tasks_ids = request.session.get('prev_tasks', [])
 
+    tasks_list = Task.objects.all()
+    paginator = Paginator(tasks_list, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
         'count': random.randint(1, 10000),
         'users': users,
@@ -30,7 +36,8 @@ def complete_view_cache(request):
         'user': user,
         'session_dict': session_dict,
         'tasks': Task.objects.all(),
-        'prev_tasks': Task.objects.filter(pk__in=prev_tasks_ids)
+        'page_obj': page_obj,
+        'prev_tasks': Task.objects.filter(pk__in=prev_tasks_ids),
     }
     return render(request, 'complete_view_cache.html', context=context)
 
