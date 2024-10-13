@@ -1,0 +1,47 @@
+<h1>
+   Complete view cached!
+</h1>
+
+<a href="{% url 'create_task' %}">Create random task</a>
+
+<p>
+    Cached number: {{ count }}
+</p>
+
+<h2>
+    Only users cached!
+</h2>
+
+{% for user in users %}
+    <p>
+        {{ user.username }}, {{ user.pk }}
+    </p>
+{% empty %}
+    <p>
+        No users
+    </p>
+{% endfor %}
+
+<h2>
+    Session count: {{ session_count }} <br>
+    User: {{ user }} <br>
+{#    Session dict: {{ session_dict }}#}
+</h2>
+
+<ul>
+    {% for task in tasks %}
+        <li>
+            <a href="{% url 'show_task' task.pk %}">{{ task.title }}<a>
+        </li>
+
+    {% endfor %}
+</ul>
+
+<ul>
+    {% for task in prev_tasks %}
+    <li>
+        <a href="{% url 'show_task' task.pk %}">{{ task.title }}<a>
+    </li>
+    {% endfor %}
+</ul>
+
