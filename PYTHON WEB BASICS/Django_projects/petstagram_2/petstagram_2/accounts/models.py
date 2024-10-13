@@ -20,19 +20,29 @@ class PetstagramUser(AbstractUser):
         validators=[
             validate_name_is_longer_then_two_cars,
             validate_name_isalpha,
-        ]
+        ],
+        null=True,
+        blank=True,
     )
     last_name = models.CharField(
         max_length=30,
         validators=[
             validate_name_is_longer_then_two_cars,
             validate_name_isalpha,
-        ]
+        ],
+        null=True,
+        blank=True,
     )
-    profile_picture = models.URLField()
+    profile_picture = models.URLField(
+        null=True,
+        blank=True,
+    )
     gender = models.CharField(
         max_length=12,
-        choices=GENDER_CHOICES
+        choices=GENDER_CHOICES,
+        default='Do not show',
+        null=True,
+        blank=True,
     )
 
     def get_user_name(self):

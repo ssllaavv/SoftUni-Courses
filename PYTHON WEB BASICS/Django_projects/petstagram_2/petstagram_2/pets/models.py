@@ -1,7 +1,11 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.template.defaultfilters import slugify
 
 from petstagram_2.accounts.models import PetstagramUser
+
+
+USER_MODEL = get_user_model()
 
 
 class Pet(models.Model):
@@ -10,7 +14,7 @@ class Pet(models.Model):
     date_of_birth = models.DateField(blank=True, null=True)
     slug = models.SlugField(unique=True, editable=False)
     user = models.ForeignKey(
-        PetstagramUser,
+        USER_MODEL,
         on_delete=models.CASCADE
     )
 

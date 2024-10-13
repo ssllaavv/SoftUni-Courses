@@ -21,6 +21,8 @@
                 {{ form.password1|placeholder:'Password' }}
                 {{ form.password2|placeholder:'Repeat password' }}
 
+                <input type="hidden" name="next" value = {{ next }}>
+
 {#                <input type="text" placeholder="Username">#}
 {##}
 {#                <input type="email" placeholder="Email">#}

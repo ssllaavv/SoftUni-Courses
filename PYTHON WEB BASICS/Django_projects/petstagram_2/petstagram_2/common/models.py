@@ -1,7 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 
 from petstagram_2.accounts.models import PetstagramUser
 from petstagram_2.photos.models import Photo
+
+USER_MODEL = get_user_model()
 
 
 class Comment(models.Model):
@@ -9,7 +12,7 @@ class Comment(models.Model):
     date_time_of_publication = models.DateTimeField(auto_now_add=True)
     to_photo = models.ForeignKey(to=Photo, on_delete=models.CASCADE)
     user = models.ForeignKey(
-        PetstagramUser,
+        USER_MODEL,
         on_delete=models.CASCADE,
     )
 
@@ -23,7 +26,7 @@ class Comment(models.Model):
 class Like(models.Model):
     to_photo = models.ForeignKey(to=Photo, on_delete=models.CASCADE)
     user = models.ForeignKey(
-        PetstagramUser,
+        USER_MODEL,
         on_delete=models.CASCADE,
     )
 
