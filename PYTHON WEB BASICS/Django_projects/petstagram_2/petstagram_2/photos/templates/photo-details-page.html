@@ -204,7 +204,7 @@
                                     <p>
                                         <!-- Link to User Profile Details Page-->
                                         <!-- User First and/or Last Name or username-->
-                                        <a href="{% url 'profile details' comment.user.pk %}">{{ comment.user.get_user_name }}</a>
+                                        <a href="{% url 'profile details' comment.user.pk %}">{{ comment.user.get_user_name }}: </a>
                                         <!-- User Comment -->
                                         {{ comment.text }}
                                     </p>

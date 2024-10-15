@@ -10,15 +10,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=t@*nal)lef*8n0v5ac)=kyz7cfe-b5lp5_*=+b*re)1kk+dn)'
+SECRET_KEY = os.environ.get('SECRET_KEY', None)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(int(os.environ.get('DEBUG', 0)))
 
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost'
-]
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')
 
 
 # Application definition
@@ -75,11 +72,11 @@ WSGI_APPLICATION = 'petstagram_2.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "petstagram_2_db",
-        "USER": "postgres-user",
-        "PASSWORD": "pass",
-        "HOST": "127.0.0.1",
-        "PORT": "5432",
+        "NAME": os.environ.get('DB_NAME', None),
+        "USER": os.environ.get('DB_USER', None),
+        "PASSWORD": os.environ.get('DB_PASSWORD', None),
+        "HOST": os.environ.get('DB_HOST', None),
+        "PORT": os.environ.get('DB_PORT', "5432"),
     }
 }
 
@@ -135,3 +132,25 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGOUT_REDIRECT_URL = 'login'
+
+
+EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND', '')
+EMAIL_HOST = os.environ.get('EMAIL_HOST', '')
+EMAIL_PORT = os.environ.get('EMAIL_PORT', '')
+EMAIL_USE_TLS = bool(int(os.environ.get('EMAIL_USE_TLS', 1)))
+EMAIL_USE_SSL = bool(int(os.environ.get('EMAIL_USE_SSL', 0)))
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', '')
+
+
+# from django.core.mail import send_mail
+# send_mail(
+#     'Test Email from Django',
+#     'This is a test email sent using Sendinblue SMTP!',
+#     'marulevsvetoslav@gmail.com',
+#     ['ssllaavv@gmail.com'],
+#     fail_silently=False,
+# )
+
+
