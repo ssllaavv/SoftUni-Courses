@@ -4,28 +4,75 @@ services:
   db:
     image: postgres:14
     restart: always
-
-    environment:
-      POSTGRES_DB: petstagram_2_db
-      POSTGRES_USER: postgres-user
-      POSTGRES_PASSWORD: pass
+    env_file:
+      - ./envs/development/.env
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+
   web:
-    build:
-      context: .
-    command: python manage.py runserver 0.0.0.0:8000
+    image: ssllaavv/petstagram-deploy:latest
+    command: gunicorn petstagram_2.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/app
+      - static_volume:/app/static-files
+      - media_volume:/app/media
     ports:
-      - "8000:8000"
+      - '8000:8000'
+    expose:
+      - 8000
     env_file:
-      - /envs/development/.env
+      - ./envs/development/.env
     depends_on:
       - db
+
+  nginx:
+    image: nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - static_volume:/home/app/web/staticfiles
+      - media_volume:/home/app/web/media
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/logs:/var/log/nginx
+#      - ./certbot/www:/var/www/certbot/:ro
+#      - ./certbot/conf/:/etc/nginx/ssl/:ro
+    depends_on:
+      - web
     links:
+      - web
+#  certbot:
+#    image: certbot/certbot
+#    volumes:
+#      - ./certbot/www/:/var/www/certbot/:rw
+#      - ./certbot/conf/:/etc/letsencrypt/:rw
+
+  migration:
+    image: ssllaavv/petstagram-deploy:latest
+    command: python manage.py migrate
+    volumes:
+      - .:/app
+    env_file:
+      - ./envs/development/.env
+    depends_on:
       - db
+      - web
+#  collectstatic:
+#    build:
+#      context: .
+#    command: python manage.py collectstatic --noinput
+#    volumes:
+#      - .:/app
+#      - staticfiles:/app/static-files
+#    env_file:
+#      - ./envs/development/.env
+#    depends_on:
+#      - db
+#      - web
+
 volumes:
   postgres_data:
+  static_volume:
+  media_volume:

@@ -16,6 +16,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', None)
 DEBUG = bool(int(os.environ.get('DEBUG', 0)))
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')
+CSRF_TRUSTED_ORIGINS = [f'http://{x}:80' for x in ALLOWED_HOSTS] + [f'https://{x}:443' for x in ALLOWED_HOSTS]
 
 
 # Application definition
@@ -72,9 +73,9 @@ WSGI_APPLICATION = 'petstagram_2.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get('DB_NAME', None),
-        "USER": os.environ.get('DB_USER', None),
-        "PASSWORD": os.environ.get('DB_PASSWORD', None),
+        "NAME": os.environ.get('POSTGRES_DB', None),
+        "USER": os.environ.get('POSTGRES_USER', None),
+        "PASSWORD": os.environ.get('POSTGRES_PASSWORD', None),
         "HOST": os.environ.get('DB_HOST', None),
         "PORT": os.environ.get('DB_PORT', "5432"),
     }
@@ -122,9 +123,13 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
+# for deploy with docker
+STATIC_ROOT = '/app/static-files'
+MEDIA_ROOT = '/app/media/'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -144,13 +149,5 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', '')
 
 
-# from django.core.mail import send_mail
-# send_mail(
-#     'Test Email from Django',
-#     'This is a test email sent using Sendinblue SMTP!',
-#     'marulevsvetoslav@gmail.com',
-#     ['ssllaavv@gmail.com'],
-#     fail_silently=False,
-# )
 
 
