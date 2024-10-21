@@ -26,6 +26,8 @@ services:
       - ./envs/development/.env
     depends_on:
       - db
+    links:
+      - db
 
   nginx:
     image: nginx
@@ -49,16 +51,16 @@ services:
 #      - ./certbot/www/:/var/www/certbot/:rw
 #      - ./certbot/conf/:/etc/letsencrypt/:rw
 
-  migration:
-    image: ssllaavv/petstagram-deploy:latest
-    command: python manage.py migrate
-    volumes:
-      - .:/app
-    env_file:
-      - ./envs/development/.env
-    depends_on:
-      - db
-      - web
+#  migration:
+#    image: ssllaavv/petstagram-deploy:latest
+#    command: python manage.py migrate
+#    volumes:
+#      - .:/app
+#    env_file:
+#      - ./envs/development/.env
+#    depends_on:
+#      - db
+#      - web
 #  collectstatic:
 #    build:
 #      context: .
